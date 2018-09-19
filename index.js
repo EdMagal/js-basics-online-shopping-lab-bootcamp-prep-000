@@ -1,4 +1,5 @@
 var cart = [];
+var sum = 0;
 
 function getCart() {
  return cart;
@@ -10,13 +11,12 @@ function setCart(c) {
 }
 
 function addToCart(item) {
-  cart.push({[item] : Math.ceil(100*Math.random(1))});
+  cart.push({[item] : Math.ceil(100*Math.random())});
   console.log(`${item} has been added to your cart.`);
   return cart;
 }
 
 function viewCart() {
-  
   if (cart.length===0) {
     console.log("Your shopping cart is empty.");
     return cart;
@@ -37,13 +37,25 @@ function viewCart() {
 
 function total() {
   var sum = 0;
+  
+  for(var i = 0; i < cart.length; i++){
+    sum+=Number(Object.values(cart[i]));
+
+  }
+      return sum;
+}
+
+
+/*function total() {
+  var sum = 0;
   for (var i in cart){
     for (var k in cart[i]) {
       sum += cart[i][k];
     }
   }
   return sum;
-}
+}*/
+
 
 function removeFromCart(item) {
   for (var i in cart){
@@ -57,6 +69,7 @@ function removeFromCart(item) {
   console.log("That item is not in your cart.");
   return cart;
 }
+
 
 function placeOrder(cardNumber) {
   if (!cardNumber) console.log("Sorry, we don't have a credit card on file for you.");
